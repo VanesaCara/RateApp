@@ -1,0 +1,29 @@
+/*CREATE TABLE*/
+USE demodb;
+
+CREATE TABLE course (
+    courseid INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255),
+    description TEXT,
+    lecturer VARCHAR(255),
+    Time VARCHAR(50),
+    location VARCHAR(255),
+    numberofstudents INT,
+    rating FLOAT
+);
+
+
+
+
+
+
+
+
+/*INSERTED DATA*/
+INSERT INTO demodb.course (name, description, lecturer, Time, location, numberofstudents, rating)
+VALUES
+    ('Programming Fundamentals', 'Introduction to basic programming concepts', 'Dr. Johnson', 'Mon/Wed 9:00 AM', 'Room A101', 25, 4.2),
+    ('Web Development Basics', 'Fundamentals of web development', 'Prof. Anderson', 'Tue/Thu 1:30 PM', 'Room B202', 30, 4.5),
+    ('Database Design and SQL', 'Designing databases and mastering SQL', 'Dr. Smith', 'Mon/Wed 2:30 PM', 'Room C301', 20, 3.8),
+    ('Machine Learning Essentials', 'Introduction to machine learning algorithms', 'Prof. Williams', 'Tue/Thu 10:00 AM', 'Room D401', 35, 4.7),
+    ('Cybersecurity Fundamentals', 'Basic principles of cybersecurity', 'Dr. Davis', 'Fri 3:00 PM', 'Room E501', 15, 4.0);
