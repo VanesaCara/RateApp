@@ -23,7 +23,7 @@ public List<Course> getAllCourses (){
     return courseService.getAllCourses();
 }
 @GetMapping("/Ciourse/{name}")
-public Course findByName(@PathVariable String name ){
+public List<Course> findByName(@PathVariable String name ){
     return courseService.findByName(name);
 }
 @PostMapping("/addCourse")

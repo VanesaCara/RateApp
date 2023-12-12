@@ -1,5 +1,6 @@
 package com.example.RestAPI.service;
 
+import com.example.RestAPI.dto.UserDto;
 import com.example.RestAPI.entity.User;
 import com.example.RestAPI.repository.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,8 +53,10 @@ public class CourseService {
         return "Course deleted!";
 
     }
-    public Course findByName(String name){
+    public List<Course> findByName(String name){
         return repository.findByName(name);
     }
+
+
 }
 

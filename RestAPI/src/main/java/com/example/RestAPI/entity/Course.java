@@ -1,5 +1,6 @@
 package com.example.RestAPI.entity;
 
+import com.example.RestAPI.dto.UserDto;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;

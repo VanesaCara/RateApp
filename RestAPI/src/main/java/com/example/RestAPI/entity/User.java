@@ -1,6 +1,7 @@
 package com.example.RestAPI.entity;
 
 
+import com.example.RestAPI.dto.UserDto;
 import jakarta.persistence.*;
 
 
@@ -25,6 +26,15 @@ public class User {
         this.name = name;
         this.email = email;
         this.password = password;
+    }
+    public UserDto convertUserToUserDto(){
+        UserDto userDto=new UserDto();
+        userDto.setUid(this.uid);
+        userDto.setName(this.name);
+        userDto.setEmail(this.email);
+        //skip pwd
+        return userDto;
+
     }
 
     public int getUid() {

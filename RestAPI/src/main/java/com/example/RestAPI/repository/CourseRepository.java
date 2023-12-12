@@ -2,9 +2,15 @@ package com.example.RestAPI.repository;
 
 import com.example.RestAPI.entity.Course;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+import java.util.List;
 
 public interface CourseRepository extends JpaRepository<Course,Integer> {
-    Course findByName(String name);
+
+    @Query(value = "Select * from course c where c.name= :name",nativeQuery = true)
+    List<Course> findByName(@Param("name") String name);
 
 
 

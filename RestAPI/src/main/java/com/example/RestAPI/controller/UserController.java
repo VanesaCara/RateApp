@@ -1,5 +1,8 @@
 package com.example.RestAPI.controller;
 
+import com.example.RestAPI.configuration.PasswordUtils;
+import com.example.RestAPI.dto.LoginDto;
+import com.example.RestAPI.dto.UserDto;
 import com.example.RestAPI.entity.User;
 import com.example.RestAPI.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,14 +18,24 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/user/{id}")
-    public User getUserById(@PathVariable Integer id){
-        return userService.findById(id);
+    public UserDto getUserById(@PathVariable Integer id){
+
+        User user=userService.findById(id);
+        UserDto userDto=user.convertUserToUserDto();
+        return userDto;
     }
 
 
     @PostMapping("/addUser")
-    public User addUser (@RequestBody User user){
-        return userService.addUser(user);
+    public ResponseEntity<?> addUser (@RequestBody User user){
+        if(userService.findByEmail(user.getEmail())!= null){
+            return new ResponseEntity<String>("Email already exists !" , HttpStatus.BAD_REQUEST);
+        }else {
+            String hashedPwd = PasswordUtils.hashPassword(user.getPassword());
+            user.setPassword(hashedPwd);
+            userService.addUser(user);
+            return  new ResponseEntity<String>("Usser added",HttpStatus.OK);
+        }
     }
     @GetMapping ("/allUsers")
     public List<User> getAllUsers (){
@@ -50,6 +63,17 @@ public String deleteAllUsers (){
 @GetMapping("/userbymail/{email}")
 public User findByEmail(@PathVariable String email){
         return userService.findByEmail(email);
+}
+
+@PostMapping("/login")
+public ResponseEntity<?> login (@RequestBody LoginDto user){
+        User userInDB=userService.findByEmail(user.getEmail());
+        if(userInDB==null){
+            return new ResponseEntity<String>("Email not found",HttpStatus.NOT_FOUND);
+        }
+        boolean verify=PasswordUtils.verifyPassword(user.getPassword(),userInDB.getPassword());
+        if(verify) return new ResponseEntity<String>("Login succesful",HttpStatus.OK);
+        else return  new ResponseEntity<String>("Incorrect password",HttpStatus.NOT_ACCEPTABLE);
 }
 }
 
