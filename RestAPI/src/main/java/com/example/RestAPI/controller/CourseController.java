@@ -18,6 +18,7 @@ public class CourseController {
     public Course getCourseById(@PathVariable Integer id){
     return courseService.findById(id);
 }
+@CrossOrigin("*")
 @GetMapping("/allCourses")
 public List<Course> getAllCourses (){
     return courseService.getAllCourses();

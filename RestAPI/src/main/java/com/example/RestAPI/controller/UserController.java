@@ -17,6 +17,8 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+
+    @CrossOrigin("*")
     @GetMapping("/user/{id}")
     public UserDto getUserById(@PathVariable Integer id){
 
