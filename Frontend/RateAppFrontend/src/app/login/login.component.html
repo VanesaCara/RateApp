@@ -1,0 +1,16 @@
+<!-- login.component.html -->
+<div class="login-container">
+  <p>Please Log in!</p>
+  <form>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required   [(ngModel)]="emailValue">
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required  [(ngModel)]="passwordValue">
+    </div>
+    <button type="button" (click)="sendData()">Login</button>
+  </form>
+  <p>Not a member? <a href="/signup">Sign up now</a></p>
+</div>
