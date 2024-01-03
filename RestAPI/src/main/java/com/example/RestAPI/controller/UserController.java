@@ -67,6 +67,7 @@ public User findByEmail(@PathVariable String email){
         return userService.findByEmail(email);
 }
 
+    @CrossOrigin("*")
 @PostMapping("/login")
 public ResponseEntity<?> login (@RequestBody LoginDto user){
         User userInDB=userService.findByEmail(user.getEmail());
